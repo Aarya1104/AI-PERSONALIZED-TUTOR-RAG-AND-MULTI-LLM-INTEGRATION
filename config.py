@@ -29,10 +29,10 @@ HYBRID_ALPHA = 0.5
 USE_RERANKING = True
 RERANK_TOP_K = 10
 
-# Device Configuration
+# Device Configuration , GPU support will be added in future updates
 DEVICE = "cpu"
 
-# Conversation Settings
+# Conversation Parameters
 MAX_HISTORY_LENGTH = 10
 ENABLE_CONVERSATION_EXPORT = True
 
