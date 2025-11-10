@@ -1,3 +1,11 @@
+import sys
+# Fix SQLite version for ChromaDB
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 import gradio as gr
 from pathlib import Path
 from document_loader import DocumentLoader
@@ -331,7 +339,13 @@ You can now ask questions about this material!"""
             - Conversation export
             """)
         
-        demo.launch(share=False, server_name="127.0.0.1", server_port=7860)
+        # For Docker deployment, bind to 0.0.0.0 to allow external connections
+        demo.launch(
+            share=False, 
+            server_name="0.0.0.0", 
+            server_port=7866,
+            show_error=True
+        )
 
 if __name__ == "__main__":
     app = AITutorApp()
